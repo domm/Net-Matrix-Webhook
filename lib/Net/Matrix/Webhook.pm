@@ -6,7 +6,7 @@ use strict;
 use warnings;
 use 5.010;
 
-our $VERSION = "3.000";
+our $VERSION = "0.900";
 
 use Net::Async::HTTP::Server::PSGI;
 use Net::Async::Matrix;
