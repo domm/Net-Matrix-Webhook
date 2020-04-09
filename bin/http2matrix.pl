@@ -27,6 +27,7 @@ Net::Matrix::Webhook->new( \%opts )->run;
 
   http2matrix.pl
       --matrix_home_server matrix.example.com
+      --matrix_room '#dev:example.com'
       --matrix_user your-bot
       --matrix_password 12345
       --http_port 8080
