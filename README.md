@@ -48,7 +48,7 @@ Required. Example: `#dev:example.net`
 
 The room you want the bot to join. The bot-user has to be invited to this room.
 
-To get the room address, use [riot](https://metacpan.org/pod/riot), go to the "room settings" and find the "main address" in "published addresses". You might need to set it first.
+To get the room address, use [riot](https://metacpan.org/pod/riot), go to the "room settings" and find the "main address" in "published addresses". You might need to set it first via "local address" - "add".
 
 ## matrix\_user
 
