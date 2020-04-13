@@ -12,6 +12,7 @@ use Net::Async::HTTP::Server::PSGI;
 use Net::Async::Matrix;
 use IO::Async::Loop;
 use IO::Async::Timer::Countdown;
+use IO::Async::SSL;
 use Plack::Request;
 use Plack::Response;
 use Digest::SHA1 qw(sha1_hex);

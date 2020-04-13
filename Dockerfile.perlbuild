@@ -1,0 +1,39 @@
+FROM debian:buster-slim as build
+
+RUN apt-get update \
+        && apt-get install -y \
+            apt-transport-https \
+            build-essential \
+            ca-certificates \
+	    curl \
+            libssl-dev \
+            zlib1g-dev \
+  	    perl \
+            cpanminus \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists
+
+RUN cpanm Perl::Build
+RUN perl-build -j4 5.30.2 /opt/perl-5.30.2
+RUN curl -L https://cpanmin.us | /opt/perl-5.30.2/bin/perl - App::cpanminus
+
+COPY cpanfile cpanfile
+RUN /opt/perl-5.30.2/bin/cpanm -n --installdeps .
+
+FROM debian:buster-slim
+
+COPY --from=build /opt/perl-5.30.2 /opt/perl-5.30.2
+COPY --from=build /usr/lib/x86_64-linux-gnu/libssl* /usr/lib/x86_64-linux-gnu/
+COPY --from=build /usr/lib/x86_64-linux-gnu/libcrypto* /usr/lib/x86_64-linux-gnu/
+COPY --from=build /usr/lib/x86_64-linux-gnu/libz.* /usr/lib/x86_64-linux-gnu/
+
+RUN adduser --disabled-password --disabled-login --gecos "http2matrix user" --home /home/http2matrix http2matrix
+USER http2matrix
+WORKDIR /home/http2matrix
+COPY lib lib
+COPY bin bin
+
+## ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
+#CMD [ "/home/http2matrix/perl5/perlbrew/perls/perl-5.30.2/bin/http2matrix.pl" ]
+CMD [ "/opt/perl-5.30.2/bin/perl","-I/home/http2matrix/lib","/home/http2matrix/bin/http2matrix.pl" ]
+
