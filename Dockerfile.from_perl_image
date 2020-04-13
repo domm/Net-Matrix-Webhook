@@ -1,0 +1,15 @@
+FROM perl:5.30.2-buster
+
+COPY cpanfile cpanfile
+RUN cpanm -n --installdeps .
+
+RUN adduser --disabled-password --disabled-login --gecos "http2matrix user" --home /home/http2matrix http2matrix
+USER http2matrix
+WORKDIR /home/http2matrix
+
+COPY bin bin
+COPY lib lib
+
+## ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
+CMD [ "perl", "-I/home/http2matrix/lib","/home/http2matrix/bin/http2matrix.pl" ]
+
