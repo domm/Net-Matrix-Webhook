@@ -1,0 +1,10 @@
+FROM perl:5.30.2-buster
+
+COPY . /usr/src/myapp
+
+WORKDIR /usr/src/myapp
+
+RUN cpanm -n --installdeps .
+
+CMD [ "perl", "-I/usr/src/myapp/lib","/usr/src/myapp/bin/http2matrix.pl" ]
+

@@ -40,7 +40,5 @@ COPY --from=build /home/perl/local /home/http2matrix/local
 COPY bin bin
 COPY lib lib
 
-## ENTRYPOINT [ "/usr/bin/dumb-init", "--" ]
-#CMD [ "/home/http2matrix/perl5/perlbrew/perls/perl-5.30.2/bin/http2matrix.pl" ]
 CMD [ "/usr/bin/perl", "-I/home/http2matrix/lib","-Mlocal::lib=/home/http2matrix/local","/home/http2matrix/bin/http2matrix.pl" ]
 
