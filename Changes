@@ -1,5 +1,10 @@
 Revision history for Net-Matrix-Webhook
 
+{{$NEXT}}
+    - dist housekeeping: github issues,
+      Dist::Zilla::PluginBundle::Author::DOMM
+
+
 0.900	2020-04-09T23:34:45
 	- first release to CPAN
 

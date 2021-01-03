@@ -1,12 +1,11 @@
 package Net::Matrix::Webhook;
 
 # ABSTRACT: A http->matrix webhook
+# VERSION
 
 use strict;
 use warnings;
 use 5.010;
-
-our $VERSION = "0.900";
 
 use Net::Async::HTTP::Server::PSGI;
 use Net::Async::Matrix;

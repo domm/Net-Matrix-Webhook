@@ -4,6 +4,7 @@ use warnings;
 
 # ABSTRACT: run Net::Matrix::Webhook
 # PODNAME: http2matrix.pl
+# VERSION
 
 use Getopt::Long;
 use Log::Any::Adapter ( $ENV{LOGADAPTER} || 'Stdout', log_level => $ENV{LOGLEVEL} || 'info' );
@@ -38,5 +39,4 @@ Net::Matrix::Webhook->new( \%opts )->run;
 A wrapper script for L<Net::Matrix::Webhook>. More info available there...
 
 Per default, output will go to C<STDOUT> via L<Log::Any> with a default log level of C<info>. You can set environment vars C<LOGADAPTER> and C<LOGLEVEL> to change this, or write your own wrapper...
-
 
